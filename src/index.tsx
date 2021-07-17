@@ -8,12 +8,14 @@ import './services/resources/AuthResource'
 import { AuthProvider } from './contexts/AuthContext'
 import 'moment/locale/pt-br'
 import 'moment-timezone'
+import ModalsProvider from './providers/ModalsProvider'
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <Router>
         <ThemeProvider>
+          <ModalsProvider />
           <Root />
         </ThemeProvider>
       </Router>

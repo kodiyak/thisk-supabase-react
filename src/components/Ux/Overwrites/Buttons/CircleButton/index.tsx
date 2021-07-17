@@ -1,10 +1,10 @@
-import { Circle } from '@chakra-ui/react'
+import { Circle, SquareProps } from '@chakra-ui/react'
 
-interface CircleButtonProps {
+interface CircleButtonProps extends SquareProps {
   color: string
 }
 
-const CircleButton: React.FC<CircleButtonProps> = ({ color, children }) => {
+const CircleButton: React.FC<CircleButtonProps> = ({ color, children, ...rest }) => {
   return (
     <Circle
       size={10}
@@ -12,8 +12,11 @@ const CircleButton: React.FC<CircleButtonProps> = ({ color, children }) => {
       borderColor="gray.700"
       color="gray.400"
       transition="all .1s ease-in-out"
+      cursor="pointer"
+      userSelect="none"
       _hover={{ transform: 'scale(1.1)', color, borderColor: color }}
       _active={{ transform: 'scale(0.98)' }}
+      {...rest}
     >
       {children}
     </Circle>

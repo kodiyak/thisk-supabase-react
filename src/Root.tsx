@@ -1,12 +1,17 @@
-import { Button, Heading, SimpleGrid, Square, Text } from '@chakra-ui/react'
-import { BoxColorMode, Col, FormProvider, InputField, Row } from '@friendlyss/react'
-import BgCircles from './components/Ux/BgCircles'
-import MainCard from './components/Ux/Cards/MainCard'
-import { BsLock } from 'react-icons/bs'
-import LoginCard from './components/Ux/Login/LoginCard'
+import { useColorMode } from '@chakra-ui/react'
+import { BoxColorMode } from '@friendlyss/react'
 import Routes from './routes/Routes'
+import { useEffect } from 'react'
 
 const Root: React.FC = () => {
+  const { colorMode, setColorMode } = useColorMode()
+
+  useEffect(() => {
+    if (colorMode !== 'dark') {
+      setColorMode(() => 'dark')
+    }
+  }, [colorMode])
+
   return (
     <BoxColorMode
       dark={{ bg: 'gray.900', minH: '100vh', color: 'white' }}

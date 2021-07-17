@@ -9,20 +9,27 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import { Col, Row } from '@friendlyss/react'
-import { useEffect, memo } from 'react'
+import { useEffect, memo, useRef } from 'react'
 
 import Moment from 'react-moment'
+import { useIncrementIndex } from '../../../../hooks/helpers/useIncrementIndex'
+import { usePostImages } from '../../../../hooks/posts/usePostImages'
+import { api } from '../../../../services/api'
+import { supabase } from '../../../../services/clients/supabase'
 import MainCard from '../../../Ux/Cards/MainCard'
 import SlateChakraViewer from '../../../Ux/Overwrites/Slate/SlateChakraViewer'
+import PostImage from './PostImage'
+import PostImages from './PostImages'
 
 interface PostCardProps {
   post: App.Post
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
-  const pics = Array.from([[], [], [], [], [], []])
   const isUpCollapse = useDisclosure()
   const isUp = useDisclosure()
+
+  const { postImages } = usePostImages(post, post.posts_images)
 
   useEffect(() => {
     setTimeout(() => {
@@ -65,25 +72,10 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <Col p={4} rounded="2xl" bg="darken.100">
           <SlateChakraViewer value={post.content} />
         </Col>
-        <SimpleGrid gap={2} columns={4}>
-          {/* {pics.map((pic, keyPic) => (
-            <Col key={`pic${keyPic}`}>
-              <Square size={28} mx="auto">
-                <Image
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                  rounded="lg"
-                  src="https://images.unsplash.com/photo-1619455052599-4cded9ae462a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
-                  shadow="lg"
-                />
-              </Square>
-            </Col>
-          ))} */}
-        </SimpleGrid>
+        <PostImages postImages={postImages} />
       </MainCard>
     </Collapse>
   )
 }
 
-export default memo(PostCard)
+export default PostCard

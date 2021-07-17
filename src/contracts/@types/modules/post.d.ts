@@ -6,5 +6,6 @@ declare namespace App {
     user_id: string
     created_at: Date
     users: App.User
+    posts_images: App.Upload.PostImage[]
   }
 }
