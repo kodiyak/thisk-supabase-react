@@ -6,6 +6,8 @@ import ThemeProvider from './providers/ThemeProvider'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './services/resources/AuthResource'
 import { AuthProvider } from './contexts/AuthContext'
+import 'moment/locale/pt-br'
+import 'moment-timezone'
 
 ReactDOM.render(
   <React.StrictMode>

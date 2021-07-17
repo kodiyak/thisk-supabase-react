@@ -1,6 +1,9 @@
-import { Box, Container, SimpleGrid } from '@chakra-ui/react'
+import { Box, Container, SimpleGrid, Text } from '@chakra-ui/react'
 import { BoxScroll, Col, Row } from '@friendlyss/react'
+import NewPostCard from '../../../Modules/Post/NewPostCard'
 import PostCard from '../../../Modules/Post/PostCard'
+import PostsList from '../../../Modules/Post/PostsList'
+import SlateChakra from '../../Overwrites/Slate/SlateChakra'
 import AuthNavbarTop from '../Navbars/AuthNavbarTop'
 import AuthSidebar from '../Sidebars/AuthSidebar'
 
@@ -22,10 +25,16 @@ const AuthMasterPage: React.FC = () => {
               <Col w={280} pt={8} pr={4}>
                 <AuthSidebar />
               </Col>
-              <Col flex={1} h={3000} pt={8}>
-                <SimpleGrid gap={2}>
-                  <PostCard />
-                </SimpleGrid>
+              <Col flex={1} pt={8}>
+                <NewPostCard />
+                <Col my={8}>
+                  <Row mb={2}>
+                    <Text fontSize="xs" fontWeight="bold" color="GrayText">
+                      Ultimos Posts
+                    </Text>
+                  </Row>
+                  <PostsList />
+                </Col>
               </Col>
             </Row>
           </Box>
